@@ -1,6 +1,6 @@
 .PHONY: build install clean test install-service uninstall
 
-VERSION := 0.0.1
+VERSION := 1.0.0
 BINARY := wake-on-demand
 PREFIX := /usr/local
 

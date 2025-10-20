@@ -368,8 +368,6 @@ func sendCommand(cmd, espID string) {
 		command = "pulse"
 	case "off":
 		command = "force"
-	case "status":
-		command = "status"
 	}
 
 	data := map[string]string{
@@ -387,15 +385,15 @@ func sendCommand(cmd, espID string) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusOK {
-		fmt.Printf("✓ Command '%s' queued for %s\n", cmd, espID)
+		fmt.Printf("Command '%s' queued for %s\n", cmd, espID)
 	} else if resp.StatusCode == http.StatusNotFound {
-		fmt.Printf("✗ ESP '%s' not registered\n", espID)
+		fmt.Printf("ESP '%s' not registered\n", espID)
 		os.Exit(1)
 	} else if resp.StatusCode == http.StatusServiceUnavailable {
-		fmt.Printf("✗ ESP '%s' is offline\n", espID)
+		fmt.Printf("ESP '%s' is offline\n", espID)
 		os.Exit(1)
 	} else {
-		fmt.Printf("✗ Error: %s\n", resp.Status)
+		fmt.Printf("Error: %s\n", resp.Status)
 		os.Exit(1)
 	}
 }
